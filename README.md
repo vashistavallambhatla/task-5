@@ -7,28 +7,25 @@ CREATING A POST-COMMIT HOOK
 `
 #!/usr/bin/env python
 
-
 import subprocess
 from datetime import datetime
 
-# Get the latest commit message
 commit_message = subprocess.run(
     ["git", "log", "-1", "--pretty=%B"],
     capture_output=True,
     text=True
 ).stdout.strip()
 
-# Get the latest commit timestamp
+
 commit_timestamp = subprocess.run(
     ["git", "log", "-1", "--pretty=%ci"],
     capture_output=True,
     text=True
 ).stdout.strip()
 
-# Prepare the log entry
+
 log_entry = f"### Commit Timestamp: {commit_timestamp}\n{commit_message}\n\n"
 
-# Write the log entry to commit-log.md
 with open("commit-log.md", "a") as log_file:
     log_file.write(log_entry)
 
