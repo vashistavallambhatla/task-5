@@ -77,6 +77,76 @@ Prevoius commit %
 
 5) GIT RESET
 
+-> Created a new commit by changing the file's content from 1 to 2
+-> staged and committed the changes
+-> Used "git reset --hard HEAD^" which resulted in going back to the previous commit entirely. No new commits were made,only the changes were reversed.
+
+(base) vashistavallambhatla@vashistas-Air test % cat file.txt
+1% 
+(base) vashistavallambhatla@vashistas-Air test % git add .
+(base) vashistavallambhatla@vashistas-Air test % git commit -m '1'
+[main 0a65240] 1
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+(base) vashistavallambhatla@vashistas-Air test % echo '2' > file.txt 
+(base) vashistavallambhatla@vashistas-Air test % git add .
+(base) vashistavallambhatla@vashistas-Air test % git commit -m '2'
+[main b1b0593] 2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+(base) vashistavallambhatla@vashistas-Air test % git log --oneline -n 3
+b1b0593 (HEAD -> main) 2
+0a65240 1
+c2111e3 Three tasks done
+(base) vashistavallambhatla@vashistas-Air test % git reset --hard HEAD
+HEAD is now at b1b0593 2
+(base) vashistavallambhatla@vashistas-Air test % git reset --hard HEAD^
+HEAD is now at 0a65240 1
+(base) vashistavallambhatla@vashistas-Air test % git log --oneline -n 3
+0a65240 (HEAD -> main) 1
+c2111e3 Three tasks done
+2f718e5 stashing and cleaning
+(base) vashistavallambhatla@vashistas-Air test % cat file.txt
+1%   
+
+6) GIT SHOW
+
+-> Upon using git show on the HEAD I got back commit metadata (commit hash,branch,    author,date,commit message) and Diff Output compared to parent commit.
+
+(base) vashistavallambhatla@vashistas-Air test % git show
+commit 0a6524001857aeeb6000abb614aea212e03a768d (HEAD -> main)
+Author: vashista <vashista.vallambhatla@gmail.com>
+Date:   Fri Nov 15 12:59:42 2024 +0530
+
+    1
+
+diff --git a/README.md b/README.md
+index 968d506..268e1ed 100644
+--- a/README.md
++++ b/README.md
+@@ -75,6 +75,10 @@ Prevoius commit %
+ (base) vashistavallambhatla@vashistas-Air test % cat file.txt
+ Prevoius commit % 
+ 
++5) GIT RESET
++
++
++
+ 
+ 
+ 
+diff --git a/file.txt b/file.txt
+index 198b443..56a6051 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1 @@
+
+
+7) GIT REBASE
+
+-> Used "git rebase -i HEAD~3" to squash three commits together
+-> Changed "pick" to "squash" in default vim that opened up 
+-> Reafactored the commit message in the vim
+
+
 
 
 
