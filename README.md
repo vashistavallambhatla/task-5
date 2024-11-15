@@ -75,6 +75,10 @@ Prevoius commit %
 (base) vashistavallambhatla@vashistas-Air test % cat file.txt
 Prevoius commit % 
 
+5) GIT RESET
+
+
+
 
 
 
