@@ -1,3 +1,5 @@
+
+
 1) CHERRY-PICKING 
 
 -> I created a new branch called 'cherry' from the main branch.
@@ -143,11 +145,45 @@ index 198b443..56a6051 100644
 7) GIT REBASE
 
 -> Used "git rebase -i HEAD~3" to squash three commits together
--> Changed "pick" to "squash" in default vim that opened up 
--> Reafactored the commit message in the vim
+-> Changed "pick" to "squash" of the commits that were to be squashed in vim
+-> Reafactored the commit message as it popped up right after squashing 
 
+(base) vashistas-Air:test vashistavallambhatla$ git reflog
+ca9f8a5 (HEAD -> main) HEAD@{0}: checkout: moving from squash to main
+95f1518 (squash) HEAD@{1}: rebase (finish): returning to refs/heads/squash
+95f1518 (squash) HEAD@{2}: rebase (squash): s1
+cc2e828 HEAD@{3}: rebase (squash): # This is a combination of 2 commits.
+c516b28 HEAD@{4}: rebase (start): checkout HEAD~3
+04f497f HEAD@{5}: rebase (abort): returning to refs/heads/squash
+04f497f HEAD@{6}: rebase (abort): returning to refs/heads/squash
+04f497f HEAD@{7}: commit: s3
+2009f23 HEAD@{8}: commit: s2
+c516b28 HEAD@{9}: commit: s1
+ca9f8a5 (HEAD -> main) HEAD@{10}: checkout: moving from main to squash
 
+8) REFLOG
 
+-> Used "git reset --hard HEAD^ " to delete a commit.
+-> The commit was no longer visible in from git log.
+-> Used "git reflog" to get the hash of deleted commit
+-> Used "git reset" to get back to the deleted commit.
+
+(base) vashistas-Air:test vashistavallambhatla$ git add .
+(base) vashistas-Air:test vashistavallambhatla$ git commit -m 'reflog'
+[main 799a041] reflog
+ 2 files changed, 20 insertions(+), 3 deletions(-)
+(base) vashistas-Air:test vashistavallambhatla$ git reset --hard HEAD^
+HEAD is now at ca9f8a5 current
+
+(base) vashistas-Air:test vashistavallambhatla$ git reflog
+ca9f8a5 (HEAD -> main) HEAD@{0}: reset: moving to HEAD^
+799a041 HEAD@{1}: commit: reflog
+.
+.
+.
+
+(base) vashistas-Air:test vashistavallambhatla$ git reset --hard 799a041
+HEAD is now at 799a041 reflog
 
 
 
